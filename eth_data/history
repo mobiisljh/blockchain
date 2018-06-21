@@ -1,0 +1,36 @@
+miner.start()
+eth.accounts()
+eth.getBalance
+eth.getBalance()
+eth.accounts
+personal.newAccount("jhlee")
+personal.newAccount("jhlee2")
+miner.start()
+miner.stop()
+eth.getBalance()
+eth.getBalance(eth.account[0])
+eth.getBalance(eth.accounts[0])
+eth.getBalance(eth.accounts[1])
+eth.pendingTransactions()
+eth.pendingTransaction()
+eth.pendingTransactions
+eth.pendingTransaction
+eth.pendingTransactions
+miner.start()
+personal.unlockAccount(eth.accounts[0], "jhlee")
+personal.unlockAccount(eth.accounts[1], "jhlee")
+personal.unlockAccount(eth.accounts[1], "jhlee2")
+personal.lockAccount(eth.accounts[1], "jhlee2")
+eth.pendingTransactions
+miner.start()
+block
+eth.blockNumber
+0x
+eth.pendingTransactions
+miner.stop()
+eth.pendingTransaction
+eth.pendingTransactions
+eth.accounts
+miner.start()
+eth.pendingTransactions
+miner.stop()

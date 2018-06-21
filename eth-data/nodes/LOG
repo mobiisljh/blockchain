@@ -1,0 +1,8 @@
+=============== Jun 19, 2018 (EDT) ===============
+21:20:02.080648 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:20:02.080827 db@open opening
+21:20:02.092771 db@janitor F·2 G·0
+21:20:02.092786 db@open done T·11.954066ms
+=============== Jun 20, 2018 (EDT) ===============
+00:10:24.037058 db@close closing
+00:10:24.045722 db@close done T·8.65721ms
