@@ -10,17 +10,96 @@
 	<script>
 
 	// 연결할JSON-RPC서버(가상 머신)의 IP 주소 및 포트 번호
-	var url = "http://192.168.100.35:8545"
+	var url = "http://192.168.100.112:8545"
 	var user_name;
 	var web3 = new Web3();
 	var provider = new web3.providers.HttpProvider(url)
 	web3.setProvider(provider);
 	web3.eth.defaultAccount = web3.eth.accounts[0];
-	var ABI = [{"constant":false,"inputs":[],"name":"countUp","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"getCounterName","outputs":[{"name":"name","type":"bytes32"}],"type":"function"},{"constant":true,"inputs":[],"name":"getNumberOfCounter","outputs":[{"name":"number","type":"uint32"}],"type":"function"},{"uts":[{"name":"name","type":"bytes32"}],"type":"constructor"}];
-	var masterABI = [{"constant":true,"inputs":[],"name":"getCounterAddressList","outputs":[{"name":"counterAddressList","type":"address[]"}],"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"bytes32"}],"name":"addCounter","outputs":[],"type":"function"}];
+	var ABI =
+	[
+		{
+			"constant": false,
+			"inputs": [],
+			"name": "countUp",
+			"outputs": [],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "getCounterName",
+			"outputs": [
+				{
+					"name": "name",
+					"type": "bytes32"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "getNumberOfCounter",
+			"outputs": [
+				{
+					"name": "number",
+					"type": "uint32"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"name": "name",
+					"type": "bytes32"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		}
+	];
+	var masterABI = [
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCounterAddressList",
+		"outputs": [
+			{
+				"name": "counterAddressList",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "name",
+				"type": "bytes32"
+			}
+		],
+		"name": "addCounter",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
 
 	// 연결할 Contract(CounterMaster) 주소
-	var master = web3.eth.contract(masterABI).at("0xaa701fb9a166e33279f300b69302fdebbca7f348");
+	var master = web3.eth.contract(masterABI).at("0x689f4d44bfe8f12c7e7887940423988c02e0d973");
 	var CounterAddressList = master.getCounterAddressList();
 	console.log(CounterAddressList);
 
@@ -123,8 +202,8 @@
 </head>
 <body>
 	<p>
-		사용자명:&nbsp;<input type="text" id="userName" value="0x3c51bda186c9682db2cc4b9f7c1f794c0211aeaa">&nbsp;
-		패스워드:&nbsp;<input type="text" id="password" value="jhlee">&nbsp; <input type="button" value="login" onclick="login();" />
+		사용자명:&nbsp;<input type="text" id="userName" value="0xa3f88326cfd15ecb640f3c105c9db3b590907a4f">&nbsp;
+		패스워드:&nbsp;<input type="text" id="password" value="junho">&nbsp; <input type="button" value="login" onclick="login();" />
 	</p>
 	<table id="list" border="1">
 		<tr>
