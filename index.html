@@ -133,7 +133,7 @@ function getGameList() {
     GameAddrList = Array.from(r);
     console.log(GameAddrList);
 
-    var text = "<h4>게임 리스트</h4>";
+    var text = "";
     for (var i = 0; i < GameAddrList.length; i++) {
       text += "<label><input type='radio' name='game_address' onclick='game_select()' value="+ GameAddrList[i] +">"+i + "번째 게임 </label>"
     }
@@ -157,7 +157,7 @@ function getTeamList() {
     TeamAddrList = Array.from(r);
     console.log(TeamAddrList);
 
-    var text = "<h4>전체 팀 리스트</h4>";
+    var text = "";
     for (var i = 0; i < TeamAddrList.length; i++) {
       text += "<label><input type='radio' name='team_address' onclick='team_select()' value="+ TeamAddrList[i] +">"+i + "번째 게임 </label>"
     }
