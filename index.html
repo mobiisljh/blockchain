@@ -17,9 +17,9 @@
 <ul>
   <li>Contract Address: <span id="contractAddr"></span></li>
   <li>My Account address: <span id="accountAddr"></span></li>
-  <li>Stored Data: <span id="storedData"></span>
-    <button onclick="getValue()"> Refresh</button> ( Current block: <span id="lastBlock"></span>)</li>
-  <li><input id="newGameName" type="text"><button onclick="setValue()">Store new value</button>
+  <li>Game List: <span id="GameList"></span>
+    <button onclick="getGameList()"> get Game Address List</button> ( Current block: <span id="lastBlock"></span>)</li>
+  <li><input id="newGameName" type="text"><button onclick="createGame()">Create New Team</button>
       <div id="result"></div></li>
   <li>새 값을 저장한 후 팬딩 트랜잭션이 블록에 포함되면 자동으로 페이지가 업데이트될 것입니다.</li>
 </ul>
@@ -77,8 +77,8 @@ function createGame(){
 }
 
 function getGameList() {
-  //var GameAddrList[] = safeBet.getGameAddrList();
-  //console.log(GameAddrList);
+  var GameAddrList = Array.from(safeBet.getGameAddrList());
+  console.log(GameAddrList);
   //for (var i = 0; i < GameAddrList.length; i++) {
     //document.write("<li style='background-color: goldenrod' padding= '1px'> article"+ i +"</li>");
   //}
