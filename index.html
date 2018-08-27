@@ -65,7 +65,7 @@ function startApp() {
   web3.eth.getAccounts(function(e,r){
     document.getElementById('accountAddr').innerHTML = getLink(r[0]);
   });
-  //getValue();
+  getGameList();
 }
 
 function getLink(addr) {
@@ -91,7 +91,7 @@ function show_checked() {
       checked_value = obj[i].value;
     }
   }
-  document.getElementById('result2').innerHTML = "선택된 게임 주소:" + checked_value;
+  document.getElementById('result').innerHTML = "선택된 게임 주소:" + checked_value;
 }
 
 function getGameList() {
@@ -106,7 +106,7 @@ function getGameList() {
       text += "<label><input type='radio' name='game_address' onclick='show_checked()' value="+ GameAddrList[i] +">"+i + "번째 게임 </label>"
     }
     
-    document.getElementById('result').innerHTML = text;
+    document.getElementById('GameList').innerHTML = text;
 
   });
   
