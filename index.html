@@ -86,11 +86,14 @@ function getGameList() {
     GameAddrList = Array.from(r);
     console.log(GameAddrList);
 
-    var text = "";
-
+    var text = "<table><tr><th> count </th> <th> address </th><tr>";
+    
     for (var i = 0; i < GameAddrList.length; i++) {
-      text += "<li>"+ GameAddrList[i]  +"</li>"
+      text += "<tr><td width = 80px align = center>"+i + "</td> <td>"+ GameAddrList[i]  +"</td></tr>"
     }
+    
+    text += "</table>";
+    
     document.getElementById('result').innerHTML = text;
 
   });
