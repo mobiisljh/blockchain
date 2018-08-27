@@ -26,6 +26,7 @@
   <input id="newGameName" type="text" width = 300px><button onclick="createGame()">Create New Game</button>
   <input id="newTeamName" type="text" width = 300px><button onclick="createTeam()">Create New Team</button>
   <div id="result"></div>
+  <div id="result2"></div>
  
   <li>새 값을 저장한 후 팬딩 트랜잭션이 블록에 포함되면 자동으로 페이지가 업데이트될 것입니다.</li>
 </ul>
@@ -99,7 +100,7 @@ function createTeam(){
 }
   
   
-function show_checked() {
+function game_select() {
   var obj = document.getElementsByName('game_address');
   var checked_index = -1;
   var checked_value = '';
@@ -112,6 +113,19 @@ function show_checked() {
   document.getElementById('result').innerHTML = "선택된 게임 주소:" + checked_value;
 }
 
+function team_select() {
+  var obj = document.getElementsByName('team_address');
+  var checked_index = -1;
+  var checked_value = '';
+  for( i=0; i<obj.length; i++ ) {
+    if(obj[i].checked) {
+      checked_index = i;
+      checked_value = obj[i].value;
+    }
+  }
+  document.getElementById('result').innerHTML = "선택된 팀 주소:" + checked_value;
+}
+  
 function getGameList() {
   var GameAddrList = new Array;
 
@@ -121,7 +135,7 @@ function getGameList() {
 
     var text = "<h4>게임 리스트</h4>";
     for (var i = 0; i < GameAddrList.length; i++) {
-      text += "<label><input type='radio' name='game_address' onclick='show_checked()' value="+ GameAddrList[i] +">"+i + "번째 게임 </label>"
+      text += "<label><input type='radio' name='game_address' onclick='game_select()' value="+ GameAddrList[i] +">"+i + "번째 게임 </label>"
     }
     
     document.getElementById('GameList').innerHTML = text;
@@ -145,7 +159,7 @@ function getTeamList() {
 
     var text = "<h4>전체 팀 리스트</h4>";
     for (var i = 0; i < TeamAddrList.length; i++) {
-      text += "<label><input type='radio' name='team_address' onclick='show_checked()' value="+ TeamAddrList[i] +">"+i + "번째 게임 </label>"
+      text += "<label><input type='radio' name='team_address' onclick='team_select()' value="+ TeamAddrList[i] +">"+i + "번째 게임 </label>"
     }
     
     document.getElementById('TeamList').innerHTML = text;
