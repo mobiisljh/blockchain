@@ -20,7 +20,9 @@
   <li>Game List: <span id="GameList"></span>
     <button onclick="getGameList()"> get Game Address List</button> ( Current block: <span id="lastBlock"></span>)</li>
   <li><input id="newGameName" type="text"><button onclick="createGame()">Create New Team</button>
-      <div id="result"></div></li>
+      <div id="result"></div>
+  <div id="result2"></div>
+  </li>
   <li>새 값을 저장한 후 팬딩 트랜잭션이 블록에 포함되면 자동으로 페이지가 업데이트될 것입니다.</li>
 </ul>
 
@@ -88,7 +90,7 @@ function show_checked() {
       checked_value = obj[i].value;
     }
   }
-  alert( '선택된 항목 인덱스: '+checked_index+'\n선택된 항목 값: '+checked_value );
+  document.getElementById('result2').innerHTML = "선택된 게임 주소:" + checked_value;
 }
 
 function getGameList() {
