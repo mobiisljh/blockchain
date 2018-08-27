@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -19,7 +19,7 @@
   <li>My Account address: <span id="accountAddr"></span></li>
   <li>Stored Data: <span id="storedData"></span>
     <button onclick="getValue()"> Refresh</button> ( Current block: <span id="lastBlock"></span>)</li>
-  <li><input id="newValue" type="text"><button onclick="setValue()">Store new value</button>
+  <li><input id="newGameName" type="text"><button onclick="setValue()">Store new value</button>
       <div id="result"></div></li>
   <li>새 값을 저장한 후 팬딩 트랜잭션이 블록에 포함되면 자동으로 페이지가 업데이트될 것입니다.</li>
 </ul>
@@ -37,38 +37,57 @@ HTML 소스<br>
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
 <!-- script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script -->
 <script>
-var contractAddress = '0xfc7b968f2d6ea3072f5b8e358a8a5b8ba8e0689e';
-var abi = [{"constant": false,	"inputs": [{"name": "x","type": "uint256"}],"name": "set","outputs": [],"payable": false,"type": "function","stateMutability": "nonpayable"},{"constant": true,"inputs": [],"name": "get","outputs": [{"name": "","type": "uint256"	}],"payable": false,"type": "function","stateMutability": "view"}];
-var simpleStorageContract;
-var simpleStorage;
+var contractAddress = '0x46f776c27238ff667f63b039ea1bffdc18800f27';
+var abi = [ { "constant": false, "inputs": [ { "name": "_GameAddr", "type": "address" }, { "name": "_TeamAddr", "type": "address" } ], "name": "addTeamToGame", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_GameAddr", "type": "address" }, { "name": "_TeamAddr", "type": "address" } ], "name": "betting", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_nextOwner", "type": "address" } ], "name": "changeOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_geamName", "type": "string" } ], "name": "createGame", "outputs": [ { "name": "", "type": "address" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_teamName", "type": "string" } ], "name": "createTeam", "outputs": [ { "name": "", "type": "address" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_GameAddr", "type": "address" } ], "name": "setWinTeam", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "test1_create_game_teams", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "test2_betting_to_first_team", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [], "name": "test3_betting_to_second_team", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "constant": false, "inputs": [ { "name": "BettingNumber", "type": "uint256" } ], "name": "withdrawal", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [], "name": "withdrawAll", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [], "name": "withdrawFee", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": true, "inputs": [], "name": "contbalance", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "getFeeBalance", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "getGameAddrList", "outputs": [ { "name": "", "type": "address[]" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "getOwner", "outputs": [ { "name": "", "type": "address" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "getTeamAddrList", "outputs": [ { "name": "", "type": "address[]" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "_userAddress", "type": "address" } ], "name": "getUserBalance", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "BettingNumber", "type": "uint256" } ], "name": "getUserBettingInfo", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "getUsetBettingCount", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "_GameAddr", "type": "address" } ], "name": "getWinRate", "outputs": [ { "name": "", "type": "uint256" }, { "name": "", "type": "uint256" }, { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "_GameAddr", "type": "address" } ], "name": "getWinTeam", "outputs": [ { "name": "", "type": "address" } ], "payable": false, "stateMutability": "view", "type": "function" } ];
+
+var safeBetContract;
+var safeBet;
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider
     window.web3 = new Web3(web3.currentProvider);
-    console.log('found web3!! in browser');
   } else {
     console.log('No web3? You should consider trying MetaMask!')
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    window.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.112:8877"));
   }
   // Now you can start your app & access web3 freely:
   startApp();
 });
+
 function startApp() {
-  simpleStorageContract = web3.eth.contract(abi);
-  simpleStorage = simpleStorageContract.at(contractAddress);
+  safeBetContract = web3.eth.contract(abi);
+  safeBet = safeBetContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
   web3.eth.getAccounts(function(e,r){
     document.getElementById('accountAddr').innerHTML = getLink(r[0]);
   });
-  getValue();
+  //getValue();
 }
+
 function getLink(addr) {
-  return '<a target="_blank" href=https://testnet.etherscan.io/address/' + addr + '>' + addr +'</a>';
+  return '<a target="_blank" href=https://ropsten.etherscan.io/address/' + addr + '>' + addr +'</a>';
 }
+
+function createGame(){
+  var newGameName = document.getElementById('newGameName').value;
+  var newGameAddress = safeBet.createGame(newGameName);
+  console.log(newGameAddress);
+}
+
+function getGameList() {
+  //var GameAddrList[] = safeBet.getGameAddrList();
+  //console.log(GameAddrList);
+  //for (var i = 0; i < GameAddrList.length; i++) {
+    //document.write("<li style='background-color: goldenrod' padding= '1px'> article"+ i +"</li>");
+  //}
+
+}
+
+/*
 function getValue() {
-  simpleStorage.get(function(e,r){
+  safeBet.get(function(e,r){
     document.getElementById('storedData').innerHTML=r.toNumber();
   });
   web3.eth.getBlockNumber(function(e,r){
@@ -78,7 +97,7 @@ function getValue() {
 function setValue() {
   var newValue = document.getElementById('newValue').value;
   var txid
-  simpleStorage.set(newValue, function(e,r){
+  safeBet.set(newValue, function(e,r){
     document.getElementById('result').innerHTML = 'Transaction id: ' + r + '<span id="pending" style="color:red;">(Pending)</span>';
     txid = r;
   });
@@ -95,22 +114,11 @@ function setValue() {
    });
  });
 }
+*/
+
+function getGameAddrList(){
+
+}
+
 </script>
 </html>
-
-<!--
-<html>
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
-    <title>My DApp</title>
-    <script src="app.js"></script>
-  </head>
-  <body>
-    <h1>Hello world!~~</h1>
-    Web3 account: <span id="account"></span>
-  </body>
-</html>
--->
