@@ -80,6 +80,7 @@ function createGame(){
     console.log(newGameAddress);
   });
 }
+  
 function show_checked() {
   var obj = document.getElementsByName('game_address');
   var checked_index = -1;
@@ -100,7 +101,7 @@ function getGameList() {
     GameAddrList = Array.from(r);
     console.log(GameAddrList);
 
-    var text = "";
+    var text = "<h4>게임 리스트</h4>";
     for (var i = 0; i < GameAddrList.length; i++) {
       text += "<label><input type='radio' name='game_address' onclick='show_checked()' value="+ GameAddrList[i] +">"+i + "번째 게임 </label>"
     }
