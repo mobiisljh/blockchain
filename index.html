@@ -77,8 +77,13 @@ function createGame(){
 }
 
 function getGameList() {
-  var GameAddrList = Array.from(safeBet.getGameAddrList());
-  console.log(GameAddrList);
+  var GameAddrList = new Array;
+
+  safeBet.getGameAddrList(function(e,r){
+    GameAddrList = Array.from(r);
+    console.log(GameAddrList);
+  });
+  
   //for (var i = 0; i < GameAddrList.length; i++) {
     //document.write("<li style='background-color: goldenrod' padding= '1px'> article"+ i +"</li>");
   //}
