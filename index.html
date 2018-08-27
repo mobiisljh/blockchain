@@ -71,9 +71,12 @@ function getLink(addr) {
 }
 
 function createGame(){
+  var newGameAddress;
   var newGameName = document.getElementById('newGameName').value;
-  var newGameAddress = safeBet.createGame(newGameName);
-  console.log(newGameAddress);
+  safeBet.createGame(newGameName, function(e,r){
+    newGameAddress = r;
+    console.log(newGameAddress);
+  });
 }
 
 function getGameList() {
@@ -82,7 +85,17 @@ function getGameList() {
   safeBet.getGameAddrList(function(e,r){
     GameAddrList = Array.from(r);
     console.log(GameAddrList);
+
+    var text = "";
+
+    for (var i = 0; i < GameAddrList.length; i++) {
+      text += "<li>"+ GameAddrList[i]  +"</li>"
+    }
+    document.getElementById('result').innerHTML = text;
+
   });
+  
+  
   
   //for (var i = 0; i < GameAddrList.length; i++) {
     //document.write("<li style='background-color: goldenrod' padding= '1px'> article"+ i +"</li>");
