@@ -78,6 +78,18 @@ function createGame(){
     console.log(newGameAddress);
   });
 }
+function show_checked() {
+  var obj = document.getElementsByName('game_address');
+  var checked_index = -1;
+  var checked_value = '';
+  for( i=0; i<obj.length; i++ ) {
+    if(obj[i].checked) {
+      checked_index = i;
+      checked_value = obj[i].value;
+    }
+  }
+  alert( '선택된 항목 인덱스: '+checked_index+'\n선택된 항목 값: '+checked_value );
+}
 
 function getGameList() {
   var GameAddrList = new Array;
@@ -86,13 +98,10 @@ function getGameList() {
     GameAddrList = Array.from(r);
     console.log(GameAddrList);
 
-    var text = "<table><tr><th> count </th> <th> address </th><tr>";
-    
+    var text = "";
     for (var i = 0; i < GameAddrList.length; i++) {
-      text += "<tr><td width = 80px align = center>"+i + "</td> <td>"+ GameAddrList[i]  +"</td></tr>"
+      text += "<label><input type='radio' name='game_address' onclick='show_checked()' value="+ GameAddrList[i] +">"+i + "번째 게임 </label>"
     }
-    
-    text += "</table>";
     
     document.getElementById('result').innerHTML = text;
 
