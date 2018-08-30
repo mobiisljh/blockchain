@@ -12,7 +12,7 @@
   <style>
     body {margin-left:50px;margin-right:50px;}
   </style>
-</head>
+</head>ㅁ
 <body>
 <h3>Safe Bet dApp Example</h3>
 <ul>
@@ -158,5 +158,121 @@ function getTeamList() {
 
   });
 }
+
+  /////////////////////////
+  
+  
+// Game에서 선언된 function을 main에서 wrapping 하지 않도록 수정 필요
+
+function wrap_setWinTeam(var _GameAddr) {
+  var WinTeam;
+  safeBet.setWinTeam(_GameAddr, function(e,r){
+    WinTeam = getWinTeam(_GameAddr);
+  });
+  return WinTeam;
+}
+
+function wrap_getWinTeam(var _GameAddr) {
+  var WinTeam;
+  safeBet.getWinTeam(_GameAddr, function(e,r){
+    WinTeam = r;
+  })
+  return WinTeam;
+}
+
+// modifier checkAddress 붙은 애들은 getOwner로 주소 체크 후에 로직 실행
+// 리턴값 분리해서 결과 나누기 어려움
+function wrap_getOwner (){
+  var Owner;
+  safeBet.getOwner(function(e,r){
+    Owner=r;
+  });
+  return Owner;
+}
+
+function wrap_changeOwner (var _nextOwner) {
+  safeBet.changeOwner(_nextOwner, function(e,r){    
+  })
+}
+
+function wrap_contbalance (){
+  var conbalance;
+  safeBet.contbalance(function(e,r){
+    conbalance = r;
+  });
+  return convalance;
+}
+
+function wrap_addTeamToGame(var _GameAddr, var _TeamAddr) {
+  safeBet.addTeamToGame(_GameAddr, _TeamAddr, function(e, r){
+    
+  });
+}
+
+function betting (var _GameAddr, var _TeamAddr) {
+  safeBet.betting(_GameAddr, _TeamAddr, function(e, r){
+    
+  });
+}
+
+function wrap_withdrawal (var BettingNumber) {
+  safeBet.withdrawal(BettingNumber, function(e, r) {
+    
+  });
+}
+
+function wrap_getFeeBalance () {
+  var feeBalance;
+  safeBet.getFeeBalance(function(e, r){
+    feeBalance = r;
+  });
+  return feeBalance;
+}
+
+function wrap_withdrawAll() {
+  safeBet.withdrawAll(function(e, r){
+    
+  });
+}
+
+function wrap_withdrawFee() {
+  safeBet.withdrawFee(function(e, r){
+    
+  });
+}
+
+function wrap_getUsetBettingCount(){
+  var _bettingCount;
+  safeBet.getUsetBettingCount(function(e, r){
+    _bettingCount = r;
+  });
+  return _bettingCount;
+}
+
+function wrap_getUserBettingInfo(var BettingNumber){
+  var _bettingValue;
+  safeBet.getUserBettingInfo(function(e, r){
+    _bettingValue = r;
+  });
+  return _bettingValue;
+}
+
+function wrap_getUserBalance(var _userAddress) {
+  var UserBalance;
+  safeBet.getUserBalance(_userAddress, function(e, r){
+    UserBalance = r;
+  });
+  return UserBalance;
+}
+
+function wrap_getGameName(var _gameAddress) {
+  var gameName;
+  safeBet.getGameName(_gameAddress, function(e, r){
+    gameName = r;
+  });
+  return gameName;
+}
+  
+  
 </script>
 </html>
