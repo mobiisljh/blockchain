@@ -180,9 +180,9 @@ function warp_betting () {
   
 
   if (window.confirm(bettingGameAddr + "게임의 " + bettingTeamAddr + "팀에 배팅하시는것이 확실합니까?")){
-    safeBet.betting(bettingGameAddr, bettingTeamAddr, bettingValue, function(e, r){
+    web3.transfer(bettingValue, safeBet.betting(bettingGameAddr, bettingTeamAddr,  function(e, r){
 
-    });
+    }));
   } else {
     console.log("cancel!!!!!!!!");
   }
