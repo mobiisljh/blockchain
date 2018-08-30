@@ -18,7 +18,7 @@
 <ul>
   <li>Contract Address: <span id="contractAddr"></span></li>
   <li>My Account address: <span id="accountAddr"></span></li>
-  
+
     <div style="float:left; width:100%">
       <div style="float:left; width:50%; padding-right:50px;" >
         Game List: <span id="GameList"></span>
@@ -37,6 +37,8 @@
 
   <div id="GameAddr"></div>
   <div id="TeamAddr"></div>
+
+<button onclick="warp_betting()" class="btn-primary">betting</button>
 
 </body>
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
@@ -86,7 +88,7 @@ function createGame(){
   });
   getGameList();
 }
-  
+
 function createTeam(){
   var newTeamAddress;
   var newTeamName = document.getElementById('newTeamName').value;
@@ -97,8 +99,8 @@ function createTeam(){
   });
   getTeamList();
 }
-  
-  
+
+
 function game_select() {
   var obj = document.getElementsByName('game_address');
   var checked_index = -1;
@@ -124,7 +126,7 @@ function team_select() {
   }
   document.getElementById('TeamAddr').innerHTML = "선택된 팀 주소:" + checked_value;
 }
-  
+
 function getGameList() {
   var GameAddrList = new Array;
 
@@ -136,7 +138,7 @@ function getGameList() {
     for (var i = 0; i < GameAddrList.length; i++) {
       text += "<label><input type='radio' name='game_address' onclick='game_select()' value="+ GameAddrList[i] +">"+i + "번째 게임 </label>"
     }
-    
+
     document.getElementById('GameList').innerHTML = text;
 
   });
@@ -153,24 +155,29 @@ function getTeamList() {
     for (var i = 0; i < TeamAddrList.length; i++) {
       text += "<label><input type='radio' name='team_address' onclick='team_select()' value="+ TeamAddrList[i] +">"+i + "번째 게임 </label>"
     }
-    
+
     document.getElementById('TeamList').innerHTML = text;
 
   });
 }
 
 function warp_betting (_GameAddr, _TeamAddr) {
-  
-  safeBet.betting(_GameAddr, _TeamAddr, function(e, r){
-    
-  });
+  var GameAddr = document.getElementById('GameAddr').value;
+  var TeamAddr = document.getElementById('TeamAddr').value;
+  if (window.confirm(GameAddr + "게임의 " + TeamAddr + "팀에 배팅하시는것이 확실합니까?")){
+    safeBet.betting(_GameAddr, _TeamAddr, function(e, r){
+
+    });
+  } else {
+    console.log("cancel!!!!!!!!");
+  }
 }
-  
-  
-  
+
+
+
   /////////////////////////
-  
-  
+
+
 // Game에서 선언된 function을 main에서 wrapping 하지 않도록 수정 필요
 
 function wrap_setWinTeam(_GameAddr) {
@@ -200,7 +207,7 @@ function wrap_getOwner (){
 }
 
 function wrap_changeOwner (_nextOwner) {
-  safeBet.changeOwner(_nextOwner, function(e,r){    
+  safeBet.changeOwner(_nextOwner, function(e,r){
   })
 }
 
@@ -214,7 +221,7 @@ function wrap_contbalance (){
 
 function wrap_addTeamToGame(_GameAddr, _TeamAddr) {
   safeBet.addTeamToGame(_GameAddr, _TeamAddr, function(e, r){
-    
+
   });
 }
 
@@ -222,7 +229,7 @@ function wrap_addTeamToGame(_GameAddr, _TeamAddr) {
 
 function wrap_withdrawal (BettingNumber) {
   safeBet.withdrawal(BettingNumber, function(e, r) {
-    
+
   });
 }
 
@@ -236,13 +243,13 @@ function wrap_getFeeBalance () {
 
 function wrap_withdrawAll() {
   safeBet.withdrawAll(function(e, r){
-    
+
   });
 }
 
 function wrap_withdrawFee() {
   safeBet.withdrawFee(function(e, r){
-    
+
   });
 }
 
@@ -277,7 +284,7 @@ function wrap_getGameName(_gameAddress) {
   });
   return gameName;
 }
-  
-  
+
+
 </script>
 </html>
