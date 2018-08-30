@@ -174,8 +174,8 @@ function warp_betting () {
   console.log("bettingGameAddr: " + bettingGameAddr);
   console.log("bettingTeamAddr: " + bettingTeamAddr);
   console.log("bettingValue: " + bettingValue);
-
-
+  console.log("typeof(bettingValue): " + typeof(bettingValue));
+  
 
   if (window.confirm(bettingGameAddr + "게임의 " + bettingTeamAddr + "팀에 배팅하시는것이 확실합니까?")){
     safeBet.betting(bettingGameAddr, bettingTeamAddr, bettingValue, function(e, r){
