@@ -35,8 +35,8 @@
   <input id="newGameName" type="text" size = 30><button onclick="createGame()" class="btn-primary">Create New Game</button>
   <input id="newTeamName" type="text" size = 30><button onclick="createTeam()" class="btn-primary">Create New Team</button>
 
-  <div id="GameAddr"></div>
-  <div id="TeamAddr"></div>
+  선택된 게임 주소: <div id="GameAddr"></div>
+  선택된 팀 주소: <div id="TeamAddr"></div>
 
 <button onclick="warp_betting()" class="btn-primary">betting</button>
 
@@ -111,7 +111,7 @@ function game_select() {
       checked_value = obj[i].value;
     }
   }
-  document.getElementById('GameAddr').innerHTML = "선택된 게임 주소:" + checked_value;
+  document.getElementById('GameAddr').innerHTML = checked_value;
 }
 
 function team_select() {
@@ -124,7 +124,7 @@ function team_select() {
       checked_value = obj[i].value;
     }
   }
-  document.getElementById('TeamAddr').innerHTML = "선택된 팀 주소:" + checked_value;
+  document.getElementById('TeamAddr').innerHTML = checked_value;
 }
 
 function getGameList() {
