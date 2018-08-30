@@ -34,10 +34,12 @@
 </ul>
   <input id="newGameName" type="text" size = 30><button onclick="createGame()" class="btn-primary">Create New Game</button>
   <input id="newTeamName" type="text" size = 30><button onclick="createTeam()" class="btn-primary">Create New Team</button>
-
+<br>
   선택된 게임 주소: <div id="GameAddr"></div>
   선택된 팀 주소: <div id="TeamAddr"></div>
 
+bettingGameAddr: <input id="bettingGameAddr" type="text" size = 30>
+bettingTeamAddr: <input id="bettingTeamAddr" type="text" size = 30>
 <button onclick="warp_betting()" class="btn-primary">betting</button>
 
 </body>
@@ -169,13 +171,16 @@ function getTeamList() {
   });
 }
 
-function warp_betting (_GameAddr, _TeamAddr) {
-  var GameAddr = document.getElementById('GameAddr').value;
-  var TeamAddr = document.getElementById('TeamAddr').value;
-  console.log("GameAddr: " + GameAddr);
-  console.log("TeamAddr: " + TeamAddr);
-  if (window.confirm(GameAddr + "게임의 " + TeamAddr + "팀에 배팅하시는것이 확실합니까?")){
-    safeBet.betting(_GameAddr, _TeamAddr, function(e, r){
+function warp_betting () {
+  var bettingGameAddr = document.getElementById('bettingGameAddr').value;
+  var bettingTeamAddr = document.getElementById('bettingTeamAddr').value;
+  console.log("bettingGameAddr: " + bettingGameAddr);
+  console.log("bettingTeamAddr: " + bettingTeamAddr);
+
+
+
+  if (window.confirm(bettingGameAddr + "게임의 " + bettingTeamAddr + "팀에 배팅하시는것이 확실합니까?")){
+    safeBet.betting(bettingGameAddr, bettingTeamAddr, function(e, r){
 
     });
   } else {
