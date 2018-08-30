@@ -164,6 +164,8 @@ function getTeamList() {
 function warp_betting (_GameAddr, _TeamAddr) {
   var GameAddr = document.getElementById('GameAddr').value;
   var TeamAddr = document.getElementById('TeamAddr').value;
+  console.log("GameAddr: " + GameAddr);
+  console.log("TeamAddr: " + TeamAddr);
   if (window.confirm(GameAddr + "게임의 " + TeamAddr + "팀에 배팅하시는것이 확실합니까?")){
     safeBet.betting(_GameAddr, _TeamAddr, function(e, r){
 
