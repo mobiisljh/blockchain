@@ -18,22 +18,24 @@
 <ul>
   <li>Contract Address: <span id="contractAddr"></span></li>
   <li>My Account address: <span id="accountAddr"></span></li>
-
-    <div style="float:left; width:100%">
-      <div style="float:left; width:50%; padding-right:50px;" >
-        Game List: <span id="GameList"></span>
-      </div>
-      <div style="float:left; width:50%; padding-left:50px;">
-        Team List: <span id="TeamList"></span>
-      </div>
-    </div>
-    <div>
-      <button type="button" onclick="getGameList()"  class="btn-primary" margin = 20px> get Game Address List</button>
-      <button type="button" onclick="getTeamList()" class="btn-primary" margin = 20px>get Team Address List</button>
-    </div>
-</ul>
+<br>	
   <input id="newGameName" type="text" size = 30><button onclick="createGame()" class="btn-primary">Create New Game</button>
   <input id="newTeamName" type="text" size = 30><button onclick="createTeam()" class="btn-primary">Create New Team</button>
+<br>
+  <div style="float:left; width:100% border:1px solid red" >
+    <div style="float:left; width:50%; padding-right:50px;" >
+      Game List: <span id="GameList"></span>
+    </div>
+    <div style="float:left; width:50%; padding-left:50px;">
+      Team List: <span id="TeamList"></span>
+    </div>
+  </div>
+  <div>
+    <button type="button" onclick="getGameList()"  class="btn-primary" margin = 20px> get Game Address List</button>
+    <button type="button" onclick="getTeamList()" class="btn-primary" margin = 20px>get Team Address List</button>
+  </div>
+</ul>
+  
 <br>
   <!--
   선택된 게임 주소: <div id="GameAddr"></div>
