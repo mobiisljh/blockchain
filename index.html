@@ -538,7 +538,7 @@ function warp_betting () {
     safeBet.betting.sendTransaction(
       bettingGameAddr,
       bettingTeamAddr, 
-      {from: web3.eth.accounts[0], gas: 3000000, value: bettingValue},
+      {from: web3.eth.accounts[0], gas: 3000000, gasPrice: 10,  value: bettingValue},
       function(e, r){
 
       }
