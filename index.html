@@ -526,12 +526,14 @@ function warp_betting () {
   var bettingGameAddr = document.getElementById('bettingGameAddr').value;
   var bettingTeamAddr = document.getElementById('bettingTeamAddr').value;
   var bettingValue = Number(document.getElementById('bettingValue').value);
-  var test = Number(bettingValue);
+  bettingValue = web3.toWei(bettingValue);
+
   console.log("bettingGameAddr: " + bettingGameAddr);
   console.log("bettingTeamAddr: " + bettingTeamAddr);
   console.log("bettingValue: " + bettingValue);
   console.log("typeof(bettingValue): " + typeof(bettingValue));
-  console.log("typeof(test): " + typeof(test));
+  
+	
   
 
   if (window.confirm(bettingGameAddr + "게임의 " + bettingTeamAddr + "팀에 배팅하시는것이 확실합니까?")){
