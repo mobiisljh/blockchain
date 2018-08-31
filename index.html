@@ -535,7 +535,7 @@ function warp_betting () {
   
 
   if (window.confirm(bettingGameAddr + "게임의 " + bettingTeamAddr + "팀에 배팅하시는것이 확실합니까?")){
-    safeBet.betting(
+    safeBet.betting.sendTransaction(
       bettingGameAddr,
       bettingTeamAddr, 
       {from: web3.eth.accounts[0], gas: 3000000, value: bettingValue},
