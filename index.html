@@ -48,6 +48,9 @@ bettingValue: <input id="Value" type="text" size = 30>
 게임에 속한 팀 리스트: <span id="team_belong_to_game"></span>
 <br>
 선택된 팀: <input id="selectedTeamAddrBelongToGame" type="text" size = 30>
+<br>
+<button onclick="wrap_gamebelongteams()" class="btn-primary">wrap_gamebelongteams</button>
+
  
   
 <button onclick="wrap_setWinTeam()" class="btn-primary">setWinTeam</button>
@@ -607,19 +610,20 @@ function wrap_addTeamToGame() {
     
   });
 }
-  
+
+	
 function wrap_gamebelongteams() {
   var teamsbelonggameList = new Array;
   var _GameAddr = document.getElementById('GameAddr').value;
   safeBet.teamsbelongtogame(_GameAddr, function(e,r){
     teamsbelonggameList = Array.from(r);
-  });
-  
+	  
     var text = "";
     for (var i = 0; i < teamsbelonggameList.length; i++) {
       text += "<label><input type='radio' name='team_belong_to_game' onclick='team_select_belong_to_game()' value="+ teamsbelonggameList[i] +">" + teamsbelonggameList[i] + "</label>"
     }
     document.getElementById('team_belong_to_game').innerHTML = text;
+  });
 }
  
 /////////////////////////////
